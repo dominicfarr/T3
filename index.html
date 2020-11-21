@@ -4,31 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>T3 - Times Table Tester</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
-  <center>
-    <h1>Times Table Tester</h1>
-  </center>
-  
-  <center>
-    <section class='container' id="practiceNumberZone">
-      <span class="pad-right">Which times table?</span>
-      <input class="form-control" type="number" placeholder="1 - 12" id="practiceNumberInput"><button class="btn" id="startBtn" type="button">Start</button>
+<body onload="document.getElementById('practiceNumberInput').focus()">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1>Times Table Tester</h1>
+    </div>
+
+    <section class="card p-3 my-3 border" id="practiceNumberZone">
+      <div class="card-body">
+        <p class="card-title">Which times table do you want to practice</p>  
+
+        <div class="input-group mb-3">
+          <input id="practiceNumberInput" type="text" class="form-control" placeholder="Any number from 1 to 12" aria-label="" aria-describedby="basic-addon1">
+          <div class="input-group-prepend">
+            <button id="startBtn" class="btn btn-outline-secondary" type="button">Start</button>
+          </div>
+        </div>
+        <div class="card-footer alert alert-warning d-none">
+          Only numbers  1 to 12
+        </div> 
+      </div>
     </section>
   
-    <section class="container" id="testingZone">
-      <span id="sum">sum</span>
-      <span><input id="answerInput" type="number"></span>
-      <span id="result">Result</span>
+    <section class="card p-3 my-3 border d-none" id="testingZone">
+      <div class="card-body">
+        <p>Answer this sum and press enter...</p>
+        <div class="container">
+          <div class="row">
+            <div class="col-3 ">
+              <input id="sum" type="text" readonly class="form-control">
+            </div>
+            <div class="col">
+              <input id="answerInput" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3"></div>
+            <div class="col">
+              <span id="result">&nbsp;</span>
+            </div>
+          </div>
+          <div class="progress m-1">
+            <div class="progress-bar" style="width:0%">0%</div>
+          </div>
+        </div>
+      </div>
     </section>
+
   
-    <section class="container" id="resultZone">
-      <div id="practiceTimeResult">Zone Time</div>
-      <div id="currentRecordTime">Zone Time</div>
-      <button class="btn" id="tryAgainBtn" type="button">Try again?</button>
+    <section class="card p-3 my-3 border d-none" id="resultZone">
+      <div id="practiceTimeResult">Time result for this practice run shown here</div>
+      <div id="currentRecordTime">The curent record time for this practice shown here</div>
+      <button class="btn btn-success" id="tryAgainBtn" type="button">Try again?</button>
     </section>
-  </center>
+
+</div>
 </body>
 <script src="./t3.js"></script>
 </html>
