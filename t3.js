@@ -23,6 +23,8 @@ let currentAnswer = 0;
 let currentNumber = 0;
 let count = 0;
 let startTime = 0;
+const numberOfQuestions = 25;
+
 
 practiceNumberInput.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
@@ -59,13 +61,15 @@ answerInput.addEventListener("keyup", function (event) {
 
       result.innerText = "Correct";
 
-      if(++count <= 10) {
-        progressBar.style = `width:${count*10}%`;
-        progressBar.innerText = `${count*10}%`;
+      if(++count <= numberOfQuestions) {
+        progressBar.style = `width:${count*(100/numberOfQuestions)}%`;
+        progressBar.innerText = `${count*(100/numberOfQuestions)}%`;
       }
       
-      if(count == 10) {
+      if(count == numberOfQuestions) {
         answerInput.setAttribute('readonly', '');
+        clearTimeout(timer);
+        document.getElementById('timer').innerHTML = '';
         showResultZone();
       } else {
         showNextSum();
@@ -102,21 +106,27 @@ function showResultZone() {
 
   let cookieRecordForNumber = parseFloat(getCookie(`${practiceNumberInput.value}-record`));
   if(cookieRecordForNumber == 0 || speed < cookieRecordForNumber) {
-    currentRecordTime.innerText = 'NEW RECORD!!';
+    currentRecordTime.innerText = `NEW RECORD for ${numberOfQuestions} questions of the ${practiceNumberInput.value} times table`;
     document.cookie = `${practiceNumberInput.value}-record=${speed}`;
   } else {
     currentRecordTime.innerText 
-      = `Current record for 10 questions of the ${practiceNumberInput.value} times table is ${cookieRecordForNumber} seconds`;
+      = `Current record for ${numberOfQuestions} questions of the ${practiceNumberInput.value} times table is ${cookieRecordForNumber} seconds`;
   }
 }
-
+var timer;
 function startTest() {
   testingZone.classList.remove('d-none');
   startTime = new Date();
+  timer = setInterval(myTimer, 100);
   count = 0;
   progressBar.style = `width:0%`;
   progressBar.innerText = `0%`;
   showNextSum();
+}
+
+function myTimer() {
+  const speed = parseFloat(Math.abs((startTime - new Date()) / 1000)).toPrecision(3);
+  document.getElementById('timer').innerHTML = `${speed} seconds`;
 }
 
 function getCookie(cname) {
