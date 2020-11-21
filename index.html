@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T3 - Times Table Tester</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <center>
+    <h1>Times Table Tester</h1>
+  </center>
+  
+  <center>
+    <section class='container' id="practiceNumberZone">
+      <span class="pad-right">Which times table?</span>
+      <input class="form-control" type="number" placeholder="1 - 12" id="practiceNumberInput"><button class="btn" id="startBtn" type="button">Start</button>
+    </section>
+  
+    <section class="container" id="testingZone">
+      <span id="sum">sum</span>
+      <span><input id="answerInput" type="number"></span>
+      <span id="result">Result</span>
+    </section>
+  
+    <section class="container" id="resultZone">
+      <div id="practiceTimeResult">Zone Time</div>
+      <div id="currentRecordTime">Zone Time</div>
+      <button class="btn" id="tryAgainBtn" type="button">Try again?</button>
+    </section>
+  </center>
+</body>
+<script src="./t3.js"></script>
+</html>
